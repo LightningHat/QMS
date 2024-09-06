@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bed Appointment Booking</title>
+    <link rel="stylesheet" href="bedbooking.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Book Your Bed Appointment</h1>
+        <form id="appointment-form">
+            <label for="department">Select Department:</label>
+            <select id="department" name="department">
+                <option value="">--Select--</option>
+                <option value="cardiology">Cardiology</option>
+                <option value="neurology">Neurology</option>
+                <option value="orthopedics">Orthopedics</option>
+                <option value="pediatrics">Pediatrics</option>
+            </select>
+
+            <label for="bed-type">Select Bed Type:</label>
+            <select id="bed-type" name="bed-type">
+                <option value="">--Select--</option>
+                <option value="private">Private</option>
+                <option value="semi-private">Semi-Private</option>
+                <option value="general">General</option>
+            </select>
+
+            <label for="admission-date">Admission Date:</label>
+            <input type="date" id="admission-date" name="admission-date">
+
+            <label for="discharge-date">Expected Discharge Date:</label>
+            <input type="date" id="discharge-date" name="discharge-date">
+
+            <button type="button" onclick="bookBed()">Book Bed</button>
+        </form>
+
+        <div id="confirmation" class="hidden">
+            <h2>Bed Appointment Confirmed</h2>
+            <p id="confirmation-details"></p>
+        </div>
+    </div>
+
+    <script src="bedbooking.js"></script>
+</body>
+</html>

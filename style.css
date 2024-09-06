@@ -161,6 +161,14 @@ nav {
   color: var(--text-light);
 }
 
+.button{
+  padding: 10px 12px;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  background-color: #defcf4;
+  border-radius: 100%;
+}
+
 .image__content__2 {
   transform: translate(calc(-50% + 8rem), calc(-50% + 10rem));
 }
