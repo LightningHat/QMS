@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Queue Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .queue-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .queue-info div {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+            width: 48%;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .patient-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .patient-list li {
+            background-color: #e9ecef;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hospital Queue Management System</h1>
+
+        <div class="queue-info">
+            <div>
+                <h2>Current Ticket</h2>
+                <p id="current-ticket">None</p>
+            </div>
+            <div>
+                <h2>Total Tickets</h2>
+                <p id="total-tickets">0</p>
+            </div>
+        </div>
+
+        <div class="queue-actions">
+            <button onclick="takeTicket()">Take Ticket</button>
+            <br>
+            <br>
+            <button onclick="callNextPatient()">Call Next Patient</button>
+        </div>
+
+        <h2>Patients in Queue</h2>
+        <ul class="patient-list" id="patient-list">
+        </ul>
+    </div>
+
+    <script>
+        let ticketNumber = 0;
+        let currentTicket = 0;
+        const patients = [];
+
+        // Function to take a new ticket
+        function takeTicket() {
+            ticketNumber++;
+            patients.push(ticketNumber);
+            updateQueueInfo();
+        }
+
+        // Function to call the next patient
+        function callNextPatient() {
+            if (patients.length > 0) {
+                currentTicket = patients.shift();  // Remove the first patient from the queue
+                updateQueueInfo();
+            } else {
+                alert("No patients in queue!");
+            }
+        }
+
+        // Function to update the display
+        function updateQueueInfo() {
+            document.getElementById('current-ticket').innerText = currentTicket === 0 ? "None" : `Ticket #${currentTicket}`;
+            document.getElementById('total-tickets').innerText = ticketNumber;
+            const patientList = document.getElementById('patient-list');
+            patientList.innerHTML = '';
+            patients.forEach((patient) => {
+                const li = document.createElement('li');
+                li.innerText = `Ticket #${patient}`;
+                patientList.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+</html>
